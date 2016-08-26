@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    data-username: sa
+    url: jdbc:h2:file:~/
