@@ -37,6 +37,11 @@ public class Trainer {
     @Max(8)
     private Integer badges;
 
+    @NotNull
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "trainer")
-    List<Pokemon> pokemons = new ArrayList<>();
+    private List<Pokemon> pokemons = new ArrayList<>();
+
+    @OneToOne
+    @NotNull
+    private Bag bag;
 }

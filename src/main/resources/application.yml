@@ -1,4 +1,8 @@
 spring:
   datasource:
+    url: jdbc:h2:file:~/.training/pokemonSpring
     data-username: sa
-    url: jdbc:h2:file:~/
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
