@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by LU355846 on 8/26/2016.
@@ -42,4 +44,7 @@ public class Pokemon {
 
     @ManyToOne
     private Trainer trainer;
+
+    @ManyToMany
+    private List<Move> moveset = new ArrayList<>();
 }
