@@ -1,10 +1,11 @@
 package com.pika.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -13,16 +14,22 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
+@ToString(exclude = "trainer")
 
 @Entity
 public class Bag {
 
-    @NotNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Column(nullable = false)
     private Integer pokeballs = 0;
 
-    @NotNull
+    @Column(nullable = false)
     private Integer potions = 0;
 
     @OneToOne
     private Trainer trainer;
+
 }

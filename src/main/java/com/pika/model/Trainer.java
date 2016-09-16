@@ -1,7 +1,10 @@
 package com.pika.model;
 
+import com.pika.exceptions.BusinessException;
+import com.pika.exceptions.ValidationException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -25,23 +28,22 @@ public class Trainer {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @NotNull
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @NotNull
+    @Column(nullable = false)
     private String city;
 
-    @NotNull
+    @Column(nullable = false)
     @Min(0)
     @Max(8)
     private Integer badges;
 
-    @NotNull
+    @Column(nullable = false)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "trainer")
     private List<Pokemon> pokemons = new ArrayList<>();
 
     @OneToOne
-    @NotNull
+    @Column(nullable = false)
     private Bag bag;
 }

@@ -1,7 +1,11 @@
 package com.pika.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pika.exceptions.BusinessException;
+import com.pika.exceptions.ValidationException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -16,6 +20,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@ToString(exclude = "trainer")
 
 @Entity
 public class Pokemon {
@@ -24,25 +29,24 @@ public class Pokemon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull
+    @Column(nullable = false)
     private String name;
 
     private String nickname;
 
-    @NotNull
+    @Column(nullable = false)
     @Min(0)
     @Max(386)
-    @Column(name = "pokedex_number")
     private Integer pokedexNumber;
 
-    @NotNull
-    @Column(name = "n_moves")
+    @Column(nullable = false)
     private Integer nMoves;
 
-    @NotNull
+    @Column(nullable = false)
     private String type;
 
     @ManyToOne
+    @JsonIgnore
     private Trainer trainer;
 
     @ManyToMany
